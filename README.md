@@ -912,7 +912,7 @@ The recommended way to run the complete system locally is Docker Compose.
 ## 1. Clone the repository
 
 ```bash
-git clone <your-repository-url>
+git clone https://github.com/vivekcpu/Aegis-Agentic-Commerce-Dashboard
 cd aegis
 ```
 
