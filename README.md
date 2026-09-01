@@ -1716,11 +1716,6 @@ Aegis is an attempt to build that missing layer.
 
 ---
 
-# 📜 License
-
-Add your preferred license here.
-
----
 
 ## 👨‍💻 Built With
 
