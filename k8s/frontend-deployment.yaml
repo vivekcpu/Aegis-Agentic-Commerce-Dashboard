@@ -1,0 +1,37 @@
+# Static build served by nginx — no server-side state at all, scale
+# freely. No env vars needed yet because the frontend still runs on
+# mock data (see frontend/src/data/mockData.js); once it's wired to call
+# the real backend API, the API base URL needs to be baked in at BUILD
+# time via a Vite env var (e.g. VITE_API_URL), since this is a static
+# build with no server to read runtime env vars at request time.
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend
+  namespace: aegis
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: frontend
+  template:
+    metadata:
+      labels:
+        app: frontend
+    spec:
+      containers:
+        - name: frontend
+          image: aegis-frontend:latest # replace with your built/pushed image path
+          ports:
+            - containerPort: 80
+          readinessProbe:
+            httpGet: { path: /, port: 80 }
+            initialDelaySeconds: 3
+            periodSeconds: 10
+          livenessProbe:
+            httpGet: { path: /, port: 80 }
+            initialDelaySeconds: 10
+            periodSeconds: 20
+          resources:
+            requests: { cpu: "50m", memory: "64Mi" }
+            limits: { cpu: "250m", memory: "128Mi" }

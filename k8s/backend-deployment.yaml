@@ -1,0 +1,46 @@
+# KNOWN LIMITATION: the backend's velocity guardrail (src/services/
+# guardrails.js) and reservation-cleanup job both currently use
+# in-memory/per-process state. Running replicas > 1 will work — nothing
+# crashes — but the velocity check's rate limit becomes "N requests per
+# pod" instead of "N requests total," and the cleanup job runs
+# redundantly on every pod (harmless, just wasteful). Move the velocity
+# counter to Redis before actually running this at replicas > 1 in
+# production. Left at replicas: 1 here for that reason — bump once
+# that's fixed.
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backend
+  namespace: aegis
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: backend
+  template:
+    metadata:
+      labels:
+        app: backend
+    spec:
+      containers:
+        - name: backend
+          image: aegis-backend:latest # replace with your built/pushed image path
+          ports:
+            - containerPort: 4000
+          envFrom:
+            - configMapRef: { name: aegis-config }
+            - secretRef: { name: aegis-secrets }
+          env:
+            - name: PORT
+              value: "4000"
+          readinessProbe:
+            httpGet: { path: /healthz, port: 4000 }
+            initialDelaySeconds: 5
+            periodSeconds: 10
+          livenessProbe:
+            httpGet: { path: /healthz, port: 4000 }
+            initialDelaySeconds: 15
+            periodSeconds: 20
+          resources:
+            requests: { cpu: "100m", memory: "128Mi" }
+            limits: { cpu: "500m", memory: "256Mi" }

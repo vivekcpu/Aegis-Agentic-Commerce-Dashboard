@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: aegis-config
+  namespace: aegis
+data:
+  MERCHANT_ID: "merch_razor_test_01"
+  FRONTEND_ORIGIN: "http://localhost:5173"              # Use localhost for local cluster testing
+  BACKEND_URL: "http://backend:4000"                  # in-cluster DNS name, not a public URL
+  RESERVATION_TTL_MINUTES: "5"
+  POSTGRES_DB: "aegis"
+  POSTGRES_USER: "aegis"

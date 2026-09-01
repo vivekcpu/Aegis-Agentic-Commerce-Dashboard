@@ -1,0 +1,87 @@
+﻿# One-command local stack: Postgres (with pgvector) + Node backend +
+# Python AI service + React frontend.
+#
+# Usage:
+#   cp .env.example .env
+#   docker compose up --build
+#
+# Compose reads ./.env automatically and substitutes the ${VARS} below.
+
+services:
+
+  postgres:
+    image: pgvector/pgvector:pg16
+    restart: unless-stopped
+
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
+
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+      # Postgres automatically runs this on first initialization.
+      - ./backend/src/db/schema.sql:/docker-entrypoint-initdb.d/schema.sql:ro
+
+    ports:
+      - "5435:5432"
+
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER} -d ${POSTGRES_DB}"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  backend:
+    build: ./backend
+    restart: unless-stopped
+
+    environment:
+      PORT: 4000
+      DATABASE_URL: ${DATABASE_URL}
+      RAZORPAY_KEY_ID: ${RAZORPAY_KEY_ID}
+      RAZORPAY_KEY_SECRET: ${RAZORPAY_KEY_SECRET}
+      RAZORPAY_WEBHOOK_SECRET: ${RAZORPAY_WEBHOOK_SECRET}
+      MERCHANT_ID: ${MERCHANT_ID}
+      FRONTEND_ORIGIN: ${FRONTEND_ORIGIN}
+      RESERVATION_TTL_MINUTES: ${RESERVATION_TTL_MINUTES}
+
+    ports:
+      - "4000:4000"
+
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+  ai-service:
+    build: ./ai-service
+    restart: unless-stopped
+
+    environment:
+      PORT: 8000
+      DATABASE_URL: ${DATABASE_URL}
+      BACKEND_URL: http://backend:4000
+      OLLAMA_URL: ${OLLAMA_URL}
+      MERCHANT_ID: ${MERCHANT_ID}
+
+    ports:
+      - "8000:8000"
+
+    depends_on:
+      postgres:
+        condition: service_healthy
+      backend:
+        condition: service_started
+
+  frontend:
+    build: ./frontend
+    restart: unless-stopped
+
+    ports:
+      - "5173:80"
+
+    depends_on:
+      - backend
+
+volumes:
+  pgdata:
