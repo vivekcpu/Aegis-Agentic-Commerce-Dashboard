@@ -48,27 +48,27 @@ Instead, every transaction passes through the Aegis backend, which acts as the *
                        │ Intent
                        ▼
                 ┌──────────────┐
-                │  AI SERVICE  │
-                │              │
-                │ Discovery    │
-                │ LangGraph    │
-                │ Geo/Tax      │
+                │  AI SERVICE    │
+                │                │
+                │ Discovery      │
+                │ LangGraph      │
+                │ Geo/Tax        │
                 └──────┬───────┘
-                       │
-                       │ Purchase Request
-                       ▼
-              ┌───────────────────┐
-              │  AEGIS BACKEND    │
-              │                   │
-              │ Guardrails        │
-              │ Trust             │
-              │ Inventory         │
-              │ Idempotency       │
-              │ Payments          │
-              │ Ledger            │
-              │ Audit             │
-              └─────────┬─────────┘
                         │
+                        │ Purchase Request
+                        ▼
+              ┌───────────────────┐
+              │  AEGIS BACKEND       │
+              │                      │
+              │ Guardrails           │
+              │ Trust                │
+              │ Inventory            │
+              │ Idempotency          │
+              │ Payments             │
+              │ Ledger               │
+              │ Audit                │
+              └─────────┬─────────┘
+                          │
              ┌──────────┼──────────┐
              ▼          ▼          ▼
         PostgreSQL   Razorpay   Merchant UI
