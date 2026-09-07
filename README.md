@@ -54,9 +54,9 @@ Instead, every transaction passes through the Aegis backend, which acts as the *
                 │ LangGraph    │
                 │ Geo/Tax      │
                 └──────┬───────┘
-                        │
-                        │ Purchase Request
-                        ▼
+                       │
+                       │ Purchase Request
+                       ▼
               ┌───────────────────┐
               │  AEGIS BACKEND    │
               │                   │
