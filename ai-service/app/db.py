@@ -25,7 +25,7 @@ async def close_pool():
 
 async def semantic_search(embedding: list[float], merchant_id: str, limit: int = 5):
     """
-    The actual "Semantic Discovery Endpoint" from context.md: ranks
+    The actual "Semantic Discovery Endpoint" : ranks
     products by cosine distance between the buyer's query embedding and
     each product's stored embedding, using pgvector's `<=>` operator.
 
