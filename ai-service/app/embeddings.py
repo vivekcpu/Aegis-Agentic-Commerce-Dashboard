@@ -2,7 +2,6 @@ import httpx
 from app.config import settings
 
 # Standard output dimension for the local 'nomic-embed-text' model.
-# Remember to update your schema.sql or alter your database table to match vector(768).
 EMBEDDING_DIM = 768  
 
 
@@ -10,8 +9,8 @@ def embed_text(text: str) -> list[float]:
     """
     Turns text into a 768-dimensional semantic vector using a local Ollama embedding model.
 
-    This replaces the historical deterministic bag-of-words hashing loop with a genuine 
-    deep-learning text-embedding model. It communicates directly with your local Ollama 
+    This replaces the older deterministic bag-of-words from older version of code  with a genuine 
+    deep-learning text-embedding model. It communicates directly with my local Ollama 
     instance over HTTP, giving the system native comprehension of semantic meaning, 
     synonyms, and intent.
 
