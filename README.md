@@ -696,8 +696,8 @@ The merchant dashboard exposes this operational history.
                     │ FastAPI                 │
                     │ LangGraph               │
                     │ Discovery               │
-                    │ Geo Optimizer            │
-                    │ Embeddings               │
+                    │ Geo Optimizer           │
+                    │ Embeddings              │
                     └───────────┬─────────────┘
                                 │
                                 ▼
@@ -706,10 +706,10 @@ The merchant dashboard exposes this operational history.
                     │                         │
                     │ Express                 │
                     │ Guardrails              │
-                    │ Trust Engine             │
+                    │ Trust Engine            │
                     │ Inventory               │
                     │ Idempotency             │
-                    │ Razorpay               │
+                    │ Razorpay                │
                     │ Audit                   │
                     │ Ledger                  │
                     └───────────┬─────────────┘
@@ -912,7 +912,7 @@ The recommended way to run the complete system locally is Docker Compose.
 ## 1. Clone the repository
 
 ```bash
-git clone <your-repository-url>
+git clone https://github.com/vivekcpu/Aegis-Agentic-Commerce-Dashboard
 cd aegis
 ```
 
@@ -1716,11 +1716,6 @@ Aegis is an attempt to build that missing layer.
 
 ---
 
-# 📜 License
-
-Add your preferred license here.
-
----
 
 ## 👨‍💻 Built With
 
