@@ -77,7 +77,7 @@ class PurchaseIntentPacket(BaseModel):
 class PurchaseResultPacket(BaseModel):
     """
     Standardized response for both success and failure -- this is the
-    "clean JSON error recovery payload" context.md's graceful failure
+    "clean JSON error recovery payload" for the graceful failure
     handler requires. An AI buyer can always parse this shape; it never
     has to handle an ad-hoc error format.
     """
