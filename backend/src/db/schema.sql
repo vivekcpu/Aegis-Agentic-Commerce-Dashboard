@@ -36,7 +36,7 @@ CREATE TABLE IF NOT EXISTS products (
   price_inr         NUMERIC(12, 2) NOT NULL,
   stock_qty         INTEGER NOT NULL DEFAULT 0,
   compliance_tags   JSONB DEFAULT '[]',
-  embedding         vector(1536),                     -- populated by ai-service ingestion pipeline
+  embedding         vector(768),                     -- populated by ai-service ingestion pipeline
   created_at        TIMESTAMPTZ NOT NULL DEFAULT now(),
   updated_at        TIMESTAMPTZ NOT NULL DEFAULT now()
 );
