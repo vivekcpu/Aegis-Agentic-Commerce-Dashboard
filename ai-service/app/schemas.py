@@ -1,7 +1,7 @@
 from pydantic import BaseModel, Field
 
 
-# ---- Discovery phase (Module 1 + 2 from the technical brief) ----
+# ---- Discovery phase (from the technical brief) ----
 
 
 class BuyerGeoContext(BaseModel):
@@ -51,7 +51,7 @@ class DiscoveryResponse(BaseModel):
     results: list[OutboundOfferPacket]
 
 
-# ---- Purchase phase (Module 3-6: guardrails through ledger) ----
+# ---- Purchase phase ( guardrails through ledger) ----
 
 
 class DeliveryAddress(BaseModel):
