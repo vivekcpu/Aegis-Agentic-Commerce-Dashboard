@@ -1,9 +1,9 @@
 """
-The LangGraph "Bounded Core Agent" from context.md.
+The LangGraph "Bounded Core Agent" managing everything.
 
 This graph is the deterministic state machine an AI buyer's purchase
 request flows through. It does NOT re-implement price/stock/velocity
-guardrails itself -- those live in exactly one place, the Part 2 Node
+guardrails itself -- those live in exactly one place, the  Node
 backend (see services/backend_client.py for why). What this graph
 actually owns:
 
