@@ -1,8 +1,8 @@
 import httpx
 from app.config import settings
 
-# Simplified demo tax table. A real deployment would call a tax API
-# (Avalara, TaxJar, etc.) per context.md's "estimated_regional_tax_inr"
+# Simplified demo tax table. A real deployment would call a tax API right now we are just testing, in real life we would use API for this.
+# like:- (Avalara, TaxJar, etc.) as per the "estimated_regional_tax_inr" in schema.py's Quote
 # field -- this is a stand-in flat-rate table, clearly not real tax advice.
 _TAX_RATES = {
     "IN": 0.18,  # GST

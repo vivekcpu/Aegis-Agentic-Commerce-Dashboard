@@ -12,7 +12,7 @@ router = APIRouter()
 @router.post("/discover", response_model=DiscoveryResponse)
 async def discover(packet: InboundQueryPacket):
     """
-    Module 1 (Ingestion & Parsing Gateway) + Module 2 (Geo-Optimization
+    (Ingestion & Parsing Gateway) +  (Geo-Optimization
     Node) from the technical brief, combined into one endpoint: an AI
     buyer sends a query packet, we embed the query text, find the
     closest-matching products in this merchant's catalog via pgvector,
