@@ -15,7 +15,7 @@ actually owns:
   3. Calling the backend and waiting for its verdict (place_order_node)
   4. Mapping WHATEVER comes back -- success or any failure -- into the
      one standardized PurchaseResultPacket shape (respond_node /
-     reject_node), which is context.md's "graceful failure handler"
+     reject_node), which is  "graceful failure handler"
      requirement: the AI buyer never has to parse a different error
      shape depending on which guardrail rejected it.
 
