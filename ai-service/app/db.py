@@ -35,9 +35,11 @@ async def semantic_search(embedding: list[float], merchant_id: str, limit: int =
     another's search results.
     """
     pool = await get_pool()
-    # asyncpg needs the vector passed as a string literal in pgvector's
-    # own text format ('[0.1,0.2,...]'), not a Python list — vector isn't
-    # a type asyncpg knows how to adapt automatically.
+    """
+    asyncpg needs the vector passed as a string literal in pgvector's
+    own text format ('[0.1,0.2,...]'), not a Python list — vector isn't
+    a type asyncpg knows how to adapt automatically.
+   """
     embedding_literal = "[" + ",".join(f"{v:.6f}" for v in embedding) + "]"
 
     rows = await pool.fetch(
