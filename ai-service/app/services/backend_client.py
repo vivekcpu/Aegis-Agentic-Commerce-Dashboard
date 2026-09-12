@@ -4,7 +4,7 @@ from app.config import settings
 
 class BackendClient:
     """
-    Thin wrapper around the Part 2 Node backend's REST API. Every
+    Thin wrapper around the  Node backend's REST API. Every
     guardrail check, DB write, Razorpay call, and ledger entry happens
     over there -- this class exists so the LangGraph graph never talks
     to Postgres or Razorpay directly for anything transactional, keeping
