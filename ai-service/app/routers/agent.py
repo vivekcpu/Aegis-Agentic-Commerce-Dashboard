@@ -11,7 +11,7 @@ async def agent_purchase(packet: PurchaseIntentPacket):
     The entry point an autonomous AI buyer calls to actually place an
     order. Runs the LangGraph pipeline (app/graph/purchase_graph.py),
     which ingests the request, does a cheap sanity precheck, hands off
-    to the Part 2 backend for the real guardrail+payment work, and maps
+    to the backend for the real guardrail+payment work, and maps
     whatever comes back into one predictable response shape.
     """
     initial_state = {
